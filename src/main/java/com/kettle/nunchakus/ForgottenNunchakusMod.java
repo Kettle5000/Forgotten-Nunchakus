@@ -15,6 +15,7 @@ import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.registries.RegistryObject;
+import com.kettle.nunchakus.Enchantments.FNEnchantments;
 
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class ForgottenNunchakusMod
         // Register the Deferred Register to the mod event bus so blocks get registered
         modEventBus.addListener(this::RegisterSpin);
         ItemRegister.ITEMS.register(modEventBus);
+	FNEnchantments.REGISTRY.register(modEventBus);
         // Register ourselves for server and other game events we are interested in
         MinecraftForge.EVENT_BUS.register(this);
         
