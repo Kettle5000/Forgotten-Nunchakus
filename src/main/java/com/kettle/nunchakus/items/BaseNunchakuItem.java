@@ -29,6 +29,8 @@ import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraft.world.item.enchantment.EnchantmentCategory;
 import net.minecraft.world.item.enchantment.SweepingEdgeEnchantment;
 import net.minecraft.world.level.Level;
+import com.kettle.nunchakus.NunchakusConfig;
+import com.kettle.nunchakus.Enchantments.FNEnchantments;
 
 public class BaseNunchakuItem extends TieredItem implements Vanishable{
 	private final Multimap<Attribute, AttributeModifier> defaultModifiers;
@@ -61,7 +63,6 @@ public class BaseNunchakuItem extends TieredItem implements Vanishable{
 	@Override
 	public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
 		player.getMainHandItem().hurtAndBreak(1, player, (p) -> p.broadcastBreakEvent(InteractionHand.MAIN_HAND));
-		//CommonSidedEvents.ComboValue.put(player.getUUID(), CommonSidedEvents.ComboValue.getOrDefault(player.getUUID(), 0.1f) + 0.1f);
 		return false;
 	}
 	
@@ -74,8 +75,9 @@ public class BaseNunchakuItem extends TieredItem implements Vanishable{
 	@Override
 	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity source) {
 		if (source instanceof Player player) {
-			CommonSidedEvents.ComboValue.put(player.getUUID(), CommonSidedEvents.ComboValue.getOrDefault(player.getUUID(), 0.1f) + 0.1f);
-			CommonSidedEvents.ComboTimer.put(player.getUUID(), (int)30);
+			float bonus = 0.05f * stack.getEnchantmentLevel(FNEnchantments.COMBO.get());
+			CommonSidedEvents.ComboValue.put(player.getUUID(), CommonSidedEvents.ComboValue.getOrDefault(player.getUUID(), 0.1f) + 0.1f + bonus);
+			CommonSidedEvents.ComboTimer.put(player.getUUID(), (int) NunchakusConfig.comboDuration);
 		}
 		return false;
 	}
