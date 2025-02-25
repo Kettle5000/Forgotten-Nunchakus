@@ -1,2 +1,2 @@
-# fn
-Forgotten Nunchakus
+# Forgotten Nunchakus
+Adds nunchakus weapons from BetterSurvival, full compatibility with Ice and Fire.
