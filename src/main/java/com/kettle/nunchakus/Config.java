@@ -1,60 +1,50 @@
 package com.kettle.nunchakus;
 
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraftforge.common.ForgeConfigSpec;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.config.ModConfigEvent;
 import net.minecraftforge.registries.ForgeRegistries;
-import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Mod.EventBusSubscriber(modid = ForgottenNunchakusMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class Config
-{
+public class NunchakusConfig {
+
     private static final ForgeConfigSpec.Builder BUILDER = new ForgeConfigSpec.Builder();
 
-    private static final ForgeConfigSpec.BooleanValue LOG_DIRT_BLOCK = BUILDER
-            .comment("Whether to log the dirt block on common setup")
-            .define("logDirtBlock", true);
+    // Resource location for the lightning damage type; default is "minecraft:lightning"
+    public static final ForgeConfigSpec.ConfigValue<String> LIGHTNING_DAMAGE = BUILDER
+            .comment("A resource location for the lightning damage type. Default: minecraft:lightning")
+            .define("lightning_damage", "minecraft:lightning_bolt");
 
-    private static final ForgeConfigSpec.IntValue MAGIC_NUMBER = BUILDER
-            .comment("A magic number")
-            .defineInRange("magicNumber", 42, 0, Integer.MAX_VALUE);
+    // Resource location for the lightning mob effect; default is "minecraft:slowness"
+    public static final ForgeConfigSpec.ConfigValue<String> LIGHTNING_MOBEFFECT = BUILDER
+            .comment("A resource location for the lightning mob effect. Default: minecraft:slowness")
+            .define("lightning_mobeffect", "minecraft:slowness");
 
-    public static final ForgeConfigSpec.ConfigValue<String> MAGIC_NUMBER_INTRODUCTION = BUILDER
-            .comment("What you want the introduction message to be for the magic number")
-            .define("magicNumberIntroduction", "The magic number is... ");
+    // Combo duration in ticks (0 to 255)
+    public static final ForgeConfigSpec.IntValue COMBO_DURATION = BUILDER
+            .comment("Combo duration in ticks (from 0 to 255)")
+            .defineInRange("combo_duration", 30, 0, 255);
 
-    // a list of strings that are treated as resource locations for items
-    private static final ForgeConfigSpec.ConfigValue<List<? extends String>> ITEM_STRINGS = BUILDER
-            .comment("A list of items to log on common setup.")
-            .defineListAllowEmpty("items", List.of("minecraft:iron_ingot"), Config::validateItemName);
+    // Build the final spec
+    public static final ForgeConfigSpec SPEC = BUILDER.build();
 
-    static final ForgeConfigSpec SPEC = BUILDER.build();
-
-    public static boolean logDirtBlock;
-    public static int magicNumber;
-    public static String magicNumberIntroduction;
-    public static Set<Item> items;
-
-    private static boolean validateItemName(final Object obj)
-    {
-        return obj instanceof final String itemName && ForgeRegistries.ITEMS.containsKey(new ResourceLocation(itemName));
-    }
+    // Cached config values for easy access
+    public static String lightningDamage;
+    public static MobEffect lightningMobEffect;
+    public static int comboDuration;
 
     @SubscribeEvent
-    static void onLoad(final ModConfigEvent event)
-    {
-        logDirtBlock = LOG_DIRT_BLOCK.get();
-        magicNumber = MAGIC_NUMBER.get();
-        magicNumberIntroduction = MAGIC_NUMBER_INTRODUCTION.get();
-
-        // convert the list of strings into a set of items
-        items = ITEM_STRINGS.get().stream()
-                .map(itemName -> ForgeRegistries.ITEMS.getValue(new ResourceLocation(itemName)))
-                .collect(Collectors.toSet());
+    static void onLoad(final ModConfigEvent.Loading event) {
+        lightningDamage = LIGHTNING_DAMAGE.get();
+        lightningMobEffect = ForgeRegistries.MOB_EFFECTS.getValue(new ResourceLocation(LIGHTNING_MOBEFFECT.get()));
+        if (lightningMobEffect == null) {
+        	lightningMobEffect = MobEffects.MOVEMENT_SLOWDOWN;
+        }
+        
+        comboDuration = COMBO_DURATION.get();
     }
 }
