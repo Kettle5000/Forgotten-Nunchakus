@@ -28,6 +28,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.fml.ModList;
+import com.kettle.nunchakus.NunchakusConfig;
+import com.kettle.nunchakus.Enchantments.FNEnchantments;
 
 public class LightningDragonBoneNunchaku extends BaseNunchakuItem {
 
@@ -39,9 +41,9 @@ public class LightningDragonBoneNunchaku extends BaseNunchakuItem {
 	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity source) {
 		boolean modloaded = ModList.get().isLoaded("iceandfire");
 		if (source instanceof Player player) {
-			CommonSidedEvents.ComboValue.put(player.getUUID(),
-					CommonSidedEvents.ComboValue.getOrDefault(player.getUUID(), 0.1f) + 0.1f);
-			CommonSidedEvents.ComboTimer.put(player.getUUID(), (int) 30);
+			float bonus = 0.05f * stack.getEnchantmentLevel(FNEnchantments.COMBO.get());
+			CommonSidedEvents.ComboValue.put(player.getUUID(), CommonSidedEvents.ComboValue.getOrDefault(player.getUUID(), 0.1f) + 0.1f + bonus);
+			CommonSidedEvents.ComboTimer.put(player.getUUID(), (int) NunchakusConfig.comboDuration);
 			// Since i dont know how to apply InF lightning effects i will just apply the
 			// default minecraft one
 			LightningBolt lightningBolt = EntityType.LIGHTNING_BOLT.create(player.level());
