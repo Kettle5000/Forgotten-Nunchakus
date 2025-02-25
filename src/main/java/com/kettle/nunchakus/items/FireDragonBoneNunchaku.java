@@ -17,6 +17,8 @@ import net.minecraft.world.item.Tier;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.fml.ModList;
+import com.kettle.nunchakus.NunchakusConfig;
+import com.kettle.nunchakus.Enchantments.FNEnchantments;
 
 public class FireDragonBoneNunchaku extends BaseNunchakuItem {
 
@@ -27,8 +29,9 @@ public class FireDragonBoneNunchaku extends BaseNunchakuItem {
 	@Override
 	public boolean hurtEnemy(ItemStack stack, LivingEntity target, LivingEntity source) {
 		if (source instanceof Player player) {
-			CommonSidedEvents.ComboValue.put(player.getUUID(), CommonSidedEvents.ComboValue.getOrDefault(player.getUUID(), 0.1f) + 0.1f);
-			CommonSidedEvents.ComboTimer.put(player.getUUID(), (int)30);
+			float bonus = 0.05f * stack.getEnchantmentLevel(FNEnchantments.COMBO.get());
+			CommonSidedEvents.ComboValue.put(player.getUUID(), CommonSidedEvents.ComboValue.getOrDefault(player.getUUID(), 0.1f) + 0.1f + bonus);
+			CommonSidedEvents.ComboTimer.put(player.getUUID(), (int) NunchakusConfig.comboDuration);
 			if (ModList.get().isLoaded("iceandfire")) {
 				if (target instanceof EntityIceDragon) {
 					DamageSource damageSource = player.level().damageSources().onFire();
