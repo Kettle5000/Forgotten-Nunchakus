@@ -25,11 +25,6 @@ public final class NunchakusNetwork {
         .encoder(LeftClickStatePacket::encode)
         .consumerMainThread(LeftClickStatePacket::handle)
         .add();
-        channel.messageBuilder(LightningEffectPacket.class, 2)
-        .decoder(LightningEffectPacket::decode)
-        .encoder(LightningEffectPacket::encode)
-        .consumerMainThread(LightningEffectPacket::handle)
-        .add();
         
     }
 }
