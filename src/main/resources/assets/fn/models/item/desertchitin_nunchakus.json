@@ -1,0 +1,21 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fn:item/desertchitin_nunchakus"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "spin": 0.0
+      },
+      "model": "fn:item/desertchitin_nunchakuspinning"
+    },
+    {
+      "predicate": {
+        "spin": 0.5
+      },
+      "model": "fn:item/desertchitin_nunchakus_default"
+    }
+  ]
+}
+}

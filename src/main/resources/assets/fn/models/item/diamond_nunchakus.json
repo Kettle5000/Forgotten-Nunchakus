@@ -1,0 +1,21 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "fn:item/diamond_nunchakus"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "spin": 0.0
+      },
+      "model": "fn:item/diamond_nunchakuspinning"
+    },
+    {
+      "predicate": {
+        "spin": 0.5
+      },
+      "model": "fn:item/diamond_nunchakus_default"
+    }
+  ]
+}
+}

@@ -1,0 +1,25 @@
+modLoader="javafml"
+loaderVersion="[47,)"
+license="Academic Free License v3.0"
+
+[[mods]]
+modId="fn"
+version="1.0"
+displayName="Forgotten Nunchakus"
+credits="Credits to block_vader for the original idea of nunchakus and lcy0x1 for the code used in 1.20.1 helped a lot on implementing this mod."
+authors="Kettle5000"
+description="1.20.1"
+
+# Start of user code block mod configuration
+# End of user code block mod configuration
+
+[[dependencies.fn]]
+    modId="minecraft"
+    mandatory=true
+    versionRange="[1.20.1,1.21)"
+    ordering="NONE"
+    side="BOTH"
+
+
+
+

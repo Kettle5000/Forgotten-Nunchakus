@@ -1,0 +1,21 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "fn:item/junglechitin_nunchakus"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "spin": 0.0
+      },
+      "model": "fn:item/junglechitin_nunchakuspinning"
+    },
+    {
+      "predicate": {
+        "spin": 0.5
+      },
+      "model": "fn:item/junglechitin_nunchakus_default"
+    }
+  ]
+}
+}

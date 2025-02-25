@@ -1,0 +1,21 @@
+{
+  "parent": "item/handheld",
+  "textures": {
+    "layer0": "fn:item/lightningdragonbone_nunchakus"
+  },
+  "overrides": [
+    {
+      "predicate": {
+        "spin": 0.0
+      },
+      "model": "fn:item/lightningdragonbone_nunchakuspinning"
+    },
+    {
+      "predicate": {
+        "spin": 0.5
+      },
+      "model": "fn:item/lightningdragonbone_nunchakus_default"
+    }
+  ]
+}
+}

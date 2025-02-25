@@ -1,0 +1,21 @@
+{
+  "item.fn.wood_nunchakus": "Wood Nunchaku",
+  "item.fn.stone_nunchakus": "Stone Nunchaku",
+  "item.fn.copper_nunchakus": "Copper Nunchaku",
+  "item.fn.gold_nunchakus": "Gold Nunchaku",
+  "item.fn.silver_nunchakus": "Silver Nunchaku",
+  "item.fn.iron_nunchakus": "Iron Nunchaku",
+  "item.fn.diamond_nunchakus": "Diamond Nunchaku",
+  "item.fn.netherite_nunchakus": "Netherite Nunchaku",
+  "item.fn.junglechitin_nunchakus": "Jungle Chitin Nunchaku",
+  "item.fn.desertchitin_nunchakus": "Desert Chitin Nunchaku",
+  "item.fn.dragonbone_nunchakus": "Dragonbone Nunchaku",
+  "item.fn.firedragonbone_nunchakus": "Fire Dragonbone Nunchaku",
+  "item.fn.icedragonbone_nunchakus": "Ice Dragonbone Nunchaku",
+  "item.fn.lightningdragonbone_nunchakus": "Lightning Dragonbone Nunchaku",
+  "tooltip.fn.silver_nunchaku.undead_damage": "+2 Damage bonus against undead",
+  "tooltip.fn.firedragonbone_nunchaku.damage_bonus": "+8 against Ice Dragons, ignites and knocks back target",
+  "tooltip.fn.icedragonbone_nunchaku.damage_bonus": "+8 against Fire Dragons, slows and knocks back target",
+  "tooltip.fn.lightningdragonbone_nunchaku.damage_bonus": "+4 against Ice Dragons, strikes targets with lightning",
+  "tooltip.fn.nunchaku.basic_tooltip": "Hold Left-Click to spin, continuing to land hits will increase damage"
+}
